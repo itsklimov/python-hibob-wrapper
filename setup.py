@@ -5,7 +5,7 @@ setup(
     version="0.1.1",
     packages=find_packages(),
     install_requires=[
-        # List your dependencies here
+        "requests",  # Add other packages as a dependency
     ],
     include_package_data=True,
     description="Fork of a Python wrapper for the HiBob API",

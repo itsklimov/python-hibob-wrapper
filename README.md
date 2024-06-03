@@ -10,13 +10,11 @@ python-hibob is an unofficial python3 driver for [HiBob](https://www.hibob.com/)
 
 ## Installation
 
-Clone this repo to use this package:
+pip install git+https://github.com/itsklimov/python-hibob-wrapper.git
 
-`git clone git@github.com:uvoteam/python-hibob.git hibob`
+# requirements.txt
+git+https://github.com/itsklimov/python-hibob-wrapper.git#egg=hibob
 
-Install required packages:
-
-`pip3 install -r hibob/requirements.txt`
 
 ## Usage
 
@@ -31,12 +29,6 @@ driver = Driver(
 people = driver.people.list()
 ```
 For more detailed info check [wiki](https://github.com/uvoteam/python-hibob/wiki)
-
-## Roadmap
-
-* Installation from [PyPi](https://pypi.org/)
-* Improved docstrings
-* Unittests
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
