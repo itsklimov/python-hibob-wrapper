@@ -95,5 +95,3 @@ class Driver:
              Instance of :class:`~endpoints.TimeOff.TimeOff`
         """
         return TimeOff(self.client)
-
-
