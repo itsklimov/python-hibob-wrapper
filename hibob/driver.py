@@ -9,12 +9,17 @@ from .endpoints import People
 from .endpoints import Reports
 from .endpoints import Tasks
 from .endpoints import TimeOff
+import base64
 
 
 class Driver:
 
-    def __init__(self, api_token):
-        self.client = Client(api_token=api_token)
+    def __init__(self, service_id, api_token):
+        def encoded_token(service_id, api_token):
+            token_str = f"{service_id}:{api_token}"
+            return base64.b64encode(token_str.encode("utf-8")).decode("utf-8")
+
+        self.client = Client(api_token=encoded_token(service_id, api_token))
 
     @property
     def documents(self):

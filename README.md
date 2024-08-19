@@ -21,9 +21,7 @@ git+https://github.com/itsklimov/python-hibob-wrapper.git#egg=hibob
 ```python
 from hibob import Driver
 
-driver = Driver(
-    api_token="YOUR_TOKEN_HERE"
-)
+driver = Driver(service_id="YOUR_SERVICE_ID", api_token="YOUR_TOKEN")
 
 # Read company people
 people = driver.people.list()
