@@ -45,7 +45,11 @@ class Client:
         request = methods.get(method, requests.get)
 
         request_params = {
-            "headers": {"Accept": "application/json", "Authorization": self.api_token},
+            "headers": {
+                "Accept": "application/json",
+                "content-type": "application/json",
+                "Authorization": f"Basic {self.api_token}",
+            },
             "json": json_body,
             "params": query,
             "data": body,

@@ -8,6 +8,7 @@ from .VariablePayments import VariablePayments
 from .Work import Work
 from .Equities import Equities
 
+
 class People(BaseEndpoint):
 
     @property
@@ -47,13 +48,10 @@ class People(BaseEndpoint):
             show_inactive (bool): should include inactive employees
 
         References:
-            https://apidocs.hibob.com/reference#get_people
+            https://apidocs.hibob.com/reference/post_people-search
         """
-        return self.client.get(
-            "people",
-            query={
-                'showInactive': show_inactive
-            }
+        return self.client.post(
+            "people/search", json_body={"showInactive": show_inactive}
         )
 
     def search_employee(self, identifier):
@@ -68,11 +66,7 @@ class People(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference#get_people-identifier
         """
-        return self.client.get(
-            "people/{identifier}".format(
-                identifier=identifier
-            )
-        )
+        return self.client.get("people/{identifier}".format(identifier=identifier))
 
     def uninvite(self, employee_id):
         """
@@ -85,9 +79,7 @@ class People(BaseEndpoint):
             https://apidocs.hibob.com/reference#post_employees-identifier-uninvite
         """
         return self.client.post(
-            'employees/{employee_id}/uninvite'.format(
-                employee_id=employee_id
-            )
+            "employees/{employee_id}/uninvite".format(employee_id=employee_id)
         )
 
     def invite(self, employee_id, wizard_id):
@@ -102,12 +94,8 @@ class People(BaseEndpoint):
             https://apidocs.hibob.com/reference#post_employees-employeeid-invitations
         """
         return self.client.post(
-            'employees/{employee_id}/invitations'.format(
-                employee_id=employee_id
-            ),
-            json_body={
-                "welcomeWizardId": wizard_id
-            }
+            "employees/{employee_id}/invitations".format(employee_id=employee_id),
+            json_body={"welcomeWizardId": wizard_id},
         )
 
     def start_date(self, employee_id, start_date, reason=None):
@@ -123,17 +111,13 @@ class People(BaseEndpoint):
             https://apidocs.hibob.com/reference#post_employees-employeeid-start-date
         """
 
-        options = {
-            'startDate': str(start_date)
-        }
+        options = {"startDate": str(start_date)}
         if isinstance(reason, str):
-            options['reason'] = reason
+            options["reason"] = reason
 
         return self.client.post(
-            'employees/{employee_id}/start-date'.format(
-                employee_id=employee_id
-            ),
-            json_body=options
+            "employees/{employee_id}/start-date".format(employee_id=employee_id),
+            json_body=options,
         )
 
     def profiles(self, sort_by="firstName"):
@@ -147,12 +131,7 @@ class People(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference#get_profiles
         """
-        return self.client.get(
-            "profiles",
-            query={
-                'sortBy': sort_by
-            }
-        )
+        return self.client.get("profiles", query={"sortBy": sort_by})
 
     def read_avatar(self, email):
         """
@@ -164,12 +143,7 @@ class People(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference#get_avatars
         """
-        return self.client.get(
-            'avatars',
-            query={
-                'email': email
-            }
-        )
+        return self.client.get("avatars", query={"email": email})
 
     def read_avatar_by_id(self, employee_id):
         """
@@ -181,11 +155,7 @@ class People(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference#get_avatars-employeeid
         """
-        return self.client.get(
-            'avatars/{employee_id}'.format(
-                employee_id=employee_id
-            )
-        )
+        return self.client.get("avatars/{employee_id}".format(employee_id=employee_id))
 
     def upload_avatar_by_id(self, employee_id, url):
         """
@@ -199,12 +169,8 @@ class People(BaseEndpoint):
             https://apidocs.hibob.com/reference#put_avatars-employeeid
         """
         return self.client.put(
-            'avatars/{employee_id}'.format(
-                employee_id=employee_id
-            ),
-            json_body={
-                'url': url
-            }
+            "avatars/{employee_id}".format(employee_id=employee_id),
+            json_body={"url": url},
         )
 
     def my_avatar(self):
@@ -214,7 +180,7 @@ class People(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference#get_my-avatar
         """
-        return self.client.get('my/avatar')
+        return self.client.get("my/avatar")
 
     def update_email(self, employee_id, email):
         """
@@ -230,12 +196,8 @@ class People(BaseEndpoint):
             https://apidocs.hibob.com/reference#put_people-id-email
         """
         return self.client.put(
-            'people/{employee_id}/email'.format(
-                employee_id=employee_id
-            ),
-            json_body={
-                'email': email
-            }
+            "people/{employee_id}/email".format(employee_id=employee_id),
+            json_body={"email": email},
         )
 
     def lifecycle(self, employee_id):
@@ -250,7 +212,5 @@ class People(BaseEndpoint):
             https://apidocs.hibob.com/reference#get_people-id-lifecycle
         """
         return self.client.get(
-            'people/{employee_id}/lifecycle'.format(
-                employee_id=employee_id
-            )
+            "people/{employee_id}/lifecycle".format(employee_id=employee_id)
         )
