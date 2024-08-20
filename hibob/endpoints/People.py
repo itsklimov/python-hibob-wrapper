@@ -129,9 +129,9 @@ class People(BaseEndpoint):
             sort_by (str): optional field name to sort by, defaults to firstName
 
         References:
-            https://apidocs.hibob.com/reference#get_profiles
+            https://apidocs.hibob.com/reference/get_profiles
         """
-        return self.client.get("profiles", query={"sortBy": sort_by})
+        return self.client.post("profiles", json_body={"sortBy": sort_by})
 
     def read_avatar(self, email):
         """
