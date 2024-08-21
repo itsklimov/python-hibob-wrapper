@@ -33,3 +33,84 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 [MIT](LICENCE.md)
+
+## Endpoints TODO Checklist
+x = Done, transitioned to new service-id api
+
+### Documents
+- [ ] add_document
+- [ ] delete_document
+- [ ] list
+
+### Metadata
+- [ ] company_lists
+- [ ] company_list_by_name
+- [ ] add_item_to_list
+
+### Onboarding
+- [ ] wizards
+
+### Payroll
+- [ ] history
+
+### People
+- [x] list
+- [ ] search_employee
+- [ ] uninvite
+- [ ] invite
+- [ ] start_date
+- [x] profiles
+- [ ] read_avatar
+- [ ] read_avatar_by_id
+- [ ] upload_avatar_by_id
+- [ ] my_avatar
+- [ ] update_email
+- [ ] lifecycle
+
+### Reports
+- [ ] list
+- [ ] download_report
+
+### Tasks
+- [ ] list
+- [ ] my_tasks
+
+### TimeOff
+- [ ] submit_request
+- [ ] get_request_by_id
+- [ ] cancel_request
+- [ ] get_requests_since_date
+- [ ] who_is_out
+- [ ] who_is_out_today
+
+### Work
+- [ ] history
+- [ ] create_entry
+- [ ] delete_entry
+- [ ] update_entry
+
+### Employment
+- [ ] history
+- [ ] create_entry
+- [ ] delete_entry
+- [ ] update_entry
+
+### Salaries
+- [ ] history
+- [ ] create_entry
+- [ ] delete_entry
+
+### Training
+- [ ] list
+- [ ] create_entry
+- [ ] delete_entry
+
+### VariablePayments
+- [ ] list
+- [ ] create_entry
+- [ ] delete_entry
+
+### Equities
+- [ ] list
+- [ ] create_entry
+- [ ] delete_entry
