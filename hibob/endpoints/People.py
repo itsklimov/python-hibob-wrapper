@@ -120,7 +120,7 @@ class People(BaseEndpoint):
             json_body=options,
         )
 
-    def profiles(self, sort_by="firstName"):
+    def profiles(self):
         """
         Read public profile section of an employee
         Returns the public section of all the active employees of the logged-in user company
@@ -131,7 +131,7 @@ class People(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference/get_profiles
         """
-        return self.client.post("profiles", json_body={"sortBy": sort_by})
+        return self.client.get("profiles")
 
     def read_avatar(self, email):
         """
