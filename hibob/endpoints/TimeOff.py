@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
 from .BaseEndpoint import BaseEndpoint
-import datetime
 
 
 class TimeOff(BaseEndpoint):
 
     def submit_request(
-            self,
-            employee_id,
-            policy_type,
-            start_date,
-            end_date,
-            description='',
-            start_date_portion='all_day',
-            end_date_portion='all_day',
-            skip_manager_approval=False,
+        self,
+        employee_id,
+        policy_type,
+        start_date,
+        end_date,
+        description="",
+        start_date_portion="all_day",
+        end_date_portion="all_day",
+        skip_manager_approval=False,
     ):
         """
         Submits a new time off request.
@@ -35,18 +34,16 @@ class TimeOff(BaseEndpoint):
             https://apidocs.hibob.com/reference#post_timeoff-employees-id-requests
         """
         return self.client.post(
-            'timeoff/employees/{employee_id}/requests'.format(
-                employee_id=employee_id
-            ),
+            "timeoff/employees/{employee_id}/requests".format(employee_id=employee_id),
             json_body={
-                'policyType': policy_type,
-                'startDate': str(start_date),
-                'startDatePortion': start_date_portion,
-                'endDate': str(end_date),
-                'endDatePortion': end_date_portion,
-                'skipManagerApproval': skip_manager_approval,
-                'description': description
-            }
+                "policyType": policy_type,
+                "startDate": str(start_date),
+                "startDatePortion": start_date_portion,
+                "endDate": str(end_date),
+                "endDatePortion": end_date_portion,
+                "skipManagerApproval": skip_manager_approval,
+                "description": description,
+            },
         )
 
     def get_request_by_id(self, employee_id, request_id):
@@ -62,9 +59,8 @@ class TimeOff(BaseEndpoint):
             https://apidocs.hibob.com/reference#get_timeoff-employees-id-requests-requestid
         """
         return self.client.get(
-            'timeoff/employees/{employee_id}/requests/{request_id}'.format(
-                employee_id=employee_id,
-                request_id=request_id
+            "timeoff/employees/{employee_id}/requests/{request_id}".format(
+                employee_id=employee_id, request_id=request_id
             )
         )
 
@@ -80,9 +76,8 @@ class TimeOff(BaseEndpoint):
             https://apidocs.hibob.com/reference#delete_timeoff-employees-id-requests-requestid
         """
         return self.client.delete(
-            'timeoff/employees/{employee_id}/requests/{request_id}'.format(
-                employee_id=employee_id,
-                request_id=request_id
+            "timeoff/employees/{employee_id}/requests/{request_id}".format(
+                employee_id=employee_id, request_id=request_id
             )
         )
 
@@ -97,36 +92,47 @@ class TimeOff(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference#get_timeoff-requests-changes
         """
-        date_string = since.isoformat(timespec='milliseconds')
+        date_string = since.isoformat(timespec="milliseconds")
 
         if since.tzinfo is None or since.tzinfo.utcoffset(since) is None:
             # datetime is naive so fetching using utc tz
-            date_string += 'Z'
+            date_string += "Z"
 
-        return self.client.get(
-            'timeoff/requests/changes',
-            query={
-                'since': date_string
-            }
-        )
+        return self.client.get("timeoff/requests/changes", query={"since": date_string})
 
-    def who_is_out(self, since, until):
+    def who_is_out(
+        self,
+        since,
+        until,
+        includeHourly=False,
+        includePrivate=False,
+        includePending=False,
+    ) -> dict:
         """
         Returns time off information for a given date range.
 
         Args:
             since (date): Start period date
             until (date): End period date
+            includeHourly (bool): Whether to include hourly employees
+            includePrivate (bool): Whether to include private requests
+            includePending (bool): Whether to include pending requests
+
+        Return structure:
+        {
+            "outs": [
+                {
+                    "blablabla": "blablabla"
+                }
+            ]
+        }
+
 
         References:
-            https://apidocs.hibob.com/reference#get_timeoff-whosout
+            https://apidocs.hibob.com/reference/get_timeoff-whosout
         """
         return self.client.get(
-            'timeoff/whosout',
-            query={
-                'from': str(since),
-                'to': str(until)
-            }
+            "timeoff/whosout", query={"from": str(since), "to": str(until)}
         )
 
     def who_is_out_today(self, today=None):
@@ -143,11 +149,6 @@ class TimeOff(BaseEndpoint):
         if today is None:
             query = {}
         else:
-            query = {
-                'today': today
-            }
+            query = {"today": today}
 
-        return self.client.get(
-            'timeoff/outtoday',
-            query=query
-        )
+        return self.client.get("timeoff/outtoday", query=query)

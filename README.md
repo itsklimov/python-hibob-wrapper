@@ -80,7 +80,7 @@ x = Done, transitioned to new service-id api
 - [ ] get_request_by_id
 - [ ] cancel_request
 - [ ] get_requests_since_date
-- [ ] who_is_out
+- [x] who_is_out
 - [ ] who_is_out_today
 
 ### Work
