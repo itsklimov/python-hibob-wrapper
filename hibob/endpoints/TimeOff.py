@@ -131,11 +131,22 @@ class TimeOff(BaseEndpoint):
         References:
             https://apidocs.hibob.com/reference/get_timeoff-whosout
         """
-        return self.client.get(
-            "timeoff/whosout", query={"from": str(since), "to": str(until)}
-        )
+        query = {
+            "from": str(since),
+            "to": str(until),
+            "includeHourly": includeHourly,
+            "includePrivate": includePrivate,
+            "includePending": includePending,
+        }
 
-    def who_is_out_today(self, today=None):
+        return self.client.get("timeoff/whosout", query=query)
+
+    def who_is_out_today(
+        self,
+        today=None,
+        includeHourly=False,
+        includePrivate=False,
+    ):
         """
         Returns the list of people that have a time off request today or on the specified date.
 
@@ -144,11 +155,14 @@ class TimeOff(BaseEndpoint):
                 If not specified, the date at UTC at the time of the request is used
 
         References:
-            https://apidocs.hibob.com/reference#get_timeoff-outtoday
+            https://apidocs.hibob.com/reference/get_timeoff-outtoday
         """
         if today is None:
             query = {}
         else:
             query = {"today": today}
+
+        query["includeHourly"] = includeHourly
+        query["includePrivate"] = includePrivate
 
         return self.client.get("timeoff/outtoday", query=query)

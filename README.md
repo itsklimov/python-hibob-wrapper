@@ -81,7 +81,7 @@ x = Done, transitioned to new service-id api
 - [ ] cancel_request
 - [ ] get_requests_since_date
 - [x] who_is_out
-- [ ] who_is_out_today
+- [x] who_is_out_today
 
 ### Work
 - [ ] history
