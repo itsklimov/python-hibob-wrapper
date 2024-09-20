@@ -44,10 +44,17 @@ class Client:
         method = method.lower()
         request = methods.get(method, requests.get)
 
+        # Convert boolean values in query params to lowercase strings
+        if query:
+            query = {
+                k: str(v).lower() if isinstance(v, bool) else v
+                for k, v in query.items()
+            }
+
         request_params = {
             "headers": {
-                "Accept": "application/json",
-                "content-type": "application/json",
+                "accept": "application/json",
+                # "content-type": "application/json",
                 "Authorization": f"Basic {self.api_token}",
             },
             "json": json_body,
