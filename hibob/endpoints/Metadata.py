@@ -10,9 +10,9 @@ class Metadata(BaseEndpoint):
         Get all company lists
 
         References:
-            https://apidocs.hibob.com/reference#get_company-named-lists
+            https://apidocs.hibob.com/reference/get_company-named-lists
         """
-        return self.client.get('company/named-lists')
+        return self.client.get("company/named-lists")
 
     def company_list_by_name(self, list_name):
         """
@@ -25,9 +25,7 @@ class Metadata(BaseEndpoint):
             https://apidocs.hibob.com/reference#get_company-named-lists-listname
         """
         return self.client.get(
-            'company/named-lists/{list_name}'.format(
-                list_name=list_name
-            )
+            "company/named-lists/{list_name}".format(list_name=list_name)
         )
 
     def add_item_to_list(self, list_name, name):
@@ -42,10 +40,6 @@ class Metadata(BaseEndpoint):
             https://apidocs.hibob.com/reference#post_company-named-lists-listname
         """
         return self.client.post(
-            'company/named-lists/{list_name}'.format(
-                list_name=list_name
-            ),
-            json_body={
-                'name': name
-            }
+            "company/named-lists/{list_name}".format(list_name=list_name),
+            json_body={"name": name},
         )

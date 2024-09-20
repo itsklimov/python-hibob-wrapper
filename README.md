@@ -43,7 +43,7 @@ x = Done, transitioned to new service-id api
 - [ ] list
 
 ### Metadata
-- [ ] company_lists
+- [x] company_lists
 - [ ] company_list_by_name
 - [ ] add_item_to_list
 
